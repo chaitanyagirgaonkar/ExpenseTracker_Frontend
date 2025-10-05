@@ -41,7 +41,7 @@ const Expenses = () => {
         ...filters
       });
 
-      const response = await axios.get(`/api/expenses?${params}`);
+      const response = await axios.get(`https://expensetracker-backend-319z.onrender.com/api/expenses?${params}`);
       setExpenses(response.data.expenses);
       setPagination({
         page: response.data.currentPage,
@@ -58,7 +58,7 @@ const Expenses = () => {
 
   const handleAddExpense = async (expenseData) => {
     try {
-      const response = await axios.post('/api/expenses', expenseData);
+      const response = await axios.post('https://expensetracker-backend-319z.onrender.com/api/expenses', expenseData);
       setExpenses([response.data, ...expenses]);
       setShowForm(false);
       toast.success('Expense added successfully');
@@ -70,7 +70,7 @@ const Expenses = () => {
 
   const handleUpdateExpense = async (id, expenseData) => {
     try {
-      const response = await axios.put(`/api/expenses/${id}`, expenseData);
+      const response = await axios.put(`https://expensetracker-backend-319z.onrender.com/api/expenses/${id}`, expenseData);
       setExpenses(expenses.map(expense => 
         expense._id === id ? response.data : expense
       ));
@@ -88,7 +88,7 @@ const Expenses = () => {
     }
 
     try {
-      await axios.delete(`/api/expenses/${id}`);
+      await axios.delete(`https://expensetracker-backend-319z.onrender.com/api/expenses/${id}`);
       setExpenses(expenses.filter(expense => expense._id !== id));
       toast.success('Expense deleted successfully');
     } catch (error) {

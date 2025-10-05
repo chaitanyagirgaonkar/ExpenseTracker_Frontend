@@ -25,7 +25,7 @@ const Budget = () => {
   const fetchBudget = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/budget');
+      const response = await axios.get('https://expensetracker-backend-319z.onrender.com/api/budget');
       setBudget(response.data);
     } catch (error) {
       console.error('Error fetching budget:', error);
@@ -44,7 +44,7 @@ const Budget = () => {
         categoryBudgets: formData.categoryBudgets.filter(cb => cb.amount > 0)
       };
 
-      await axios.post('/api/budget', budgetData);
+      await axios.post('https://expensetracker-backend-319z.onrender.com/api/budget', budgetData);
       await fetchBudget();
       setShowForm(false);
       setFormData({ monthlyBudget: '', categoryBudgets: [] });

@@ -63,7 +63,7 @@ export const AuthProvider = ({ children }) => {
     const loadUser = async () => {
       if (state.token) {
         try {
-          const res = await axios.get('/api/auth/profile');
+          const res = await axios.get('https://expensetracker-backend-319z.onrender.com/api/auth/profile');
           dispatch({
             type: 'LOGIN_SUCCESS',
             payload: {
@@ -86,7 +86,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       dispatch({ type: 'SET_LOADING', payload: true });
-      const res = await axios.post('/api/auth/login', { email, password });
+      const res = await axios.post('https://expensetracker-backend-319z.onrender.com/api/auth/login', { email, password });
       
       dispatch({
         type: 'LOGIN_SUCCESS',
@@ -108,7 +108,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (name, email, password) => {
     try {
       dispatch({ type: 'SET_LOADING', payload: true });
-      const res = await axios.post('/api/auth/register', { name, email, password });
+      const res = await axios.post('https://expensetracker-backend-319z.onrender.com/api/auth/register', { name, email, password });
       
       dispatch({
         type: 'LOGIN_SUCCESS',
@@ -134,7 +134,7 @@ export const AuthProvider = ({ children }) => {
 
   const updateUser = async (userData) => {
     try {
-      const res = await axios.put('/api/auth/profile', userData);
+      const res = await axios.put('https://expensetracker-backend-319z.onrender.com/api/auth/profile', userData);
       dispatch({
         type: 'UPDATE_USER',
         payload: res.data,

@@ -24,7 +24,7 @@ const Udhari = () => {
     try {
       setLoading(true);
       const params = new URLSearchParams(filters);
-      const response = await axios.get(`/api/udhari?${params}`);
+      const response = await axios.get(`https://expensetracker-backend-319z.onrender.com/api/udhari?${params}`);
       setRecords(response.data.records);
     } catch (error) {
       console.error('Error fetching udhari records:', error);
@@ -36,7 +36,7 @@ const Udhari = () => {
 
   const fetchSummary = async () => {
     try {
-      const response = await axios.get('/api/udhari/summary');
+      const response = await axios.get('https://expensetracker-backend-319z.onrender.com/api/udhari/summary');
       setSummary(response.data);
     } catch (error) {
       console.error('Error fetching udhari summary:', error);
@@ -45,7 +45,7 @@ const Udhari = () => {
 
   const handleAddRecord = async (recordData) => {
     try {
-      const response = await axios.post('/api/udhari', recordData);
+      const response = await axios.post('https://expensetracker-backend-319z.onrender.com/api/udhari', recordData);
       setRecords([response.data, ...records]);
       setShowForm(false);
       fetchSummary();
@@ -58,7 +58,7 @@ const Udhari = () => {
 
   const handleUpdateRecord = async (id, recordData) => {
     try {
-      const response = await axios.put(`/api/udhari/${id}`, recordData);
+      const response = await axios.put(`https://expensetracker-backend-319z.onrender.com/api/udhari/${id}`, recordData);
       setRecords(records.map(record => 
         record._id === id ? response.data : record
       ));
@@ -77,7 +77,7 @@ const Udhari = () => {
     }
 
     try {
-      await axios.delete(`/api/udhari/${id}`);
+      await axios.delete(`https://expensetracker-backend-319z.onrender.com/api/udhari/${id}`);
       setRecords(records.filter(record => record._id !== id));
       fetchSummary();
       toast.success('Udhari record deleted successfully');
@@ -89,7 +89,7 @@ const Udhari = () => {
 
   const handleSettleRecord = async (id) => {
     try {
-      await axios.put(`/api/udhari/${id}/settle`);
+      await axios.put(`https://expensetracker-backend-319z.onrender.com/api/udhari/${id}/settle`);
       setRecords(records.map(record => 
         record._id === id ? { ...record, status: 'settled', settledDate: new Date() } : record
       ));

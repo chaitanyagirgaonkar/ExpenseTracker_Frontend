@@ -28,9 +28,9 @@ const Dashboard = () => {
     try {
       setLoading(true);
       const [analyticsRes, budgetRes, udhariRes] = await Promise.all([
-        axios.get('/api/expenses/analytics'),
-        axios.get('/api/budget'),
-        axios.get('/api/udhari/summary')
+        axios.get('https://expensetracker-backend-319z.onrender.com/api/expenses/analytics'),
+        axios.get('https://expensetracker-backend-319z.onrender.com/api/budget'),
+        axios.get('https://expensetracker-backend-319z.onrender.com/api/udhari/summary')
       ]);
 
       console.log('Analytics data:', analyticsRes.data);
